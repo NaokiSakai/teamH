@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"href="../style.css">
+<style>
+
+.form_textarea{
+        font-size: 1rem;
+        color: #495057;
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+        padding: 10px;
+        margin-top: 5px;
+        margin-right: 59.7%;
+        float: right;
+        width: 40%;
+        margin-bottom: 5%;
+
+    }
+
+    .datetime{
+        width: 45%;
+    }
+
+.btn2{
+    border-radius: 15px;
+    width: 10%;
+    height: 90%;
+    margin-left: 39%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding: 4px;
+}
+
+.btn3{
+    border-radius: 15px;
+    width: 10%;
+    height: 90%;
+    margin-right: 39%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding: 4px;
+}
+select{
+    width:30%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+   
+    
+
+</style>
+</head>
+
+<body>
+    <div class="bgc">
+       <div class="head">
+        <h2>落し物管理者画面</h2>
+       </div>
+
+<div class="lostList">
+    <div class="form">
+        <div class="form_title">落し物登録フォーム</div>
+            <div class="form_content">
+              <form>
+                <div class="form_list">
+                  <label>落し物名を入力してください</label>
+                  <input name="lostName" type="text">
+
+                  <label>落し物分類</label><br>
+                  <select name="lostType">
+                    <option value="write">筆記用具</option>
+                    <option value="elect">電子機器</option>
+                    <option value="value">貴重品</option>
+                    <option value="accessory">小物・アクセサリー</option>
+                    <option value="clothing">衣類</option>
+                    <option value="books">書籍類</option>
+                    <option value="other">その他</option>
+                  </select><br>
+      
+                  <label>写真をアップロ分類ードしてください</label>
+                  <input name="picture" type="file" accept="image/png, image/jpeg">
+      
+                  <label>発見時刻</label>
+                  <input name="datetime" type="datetime-local" class="datetime">
+      
+                  <label>特徴を入力してください</label>
+                  <textarea name="feature" class="form_textarea"></textarea>
+                  <br>
+    
+                </div>
+              </form>
+            </div>
+    </div>
+</div>
+
+       <div class="regist">
+        <a href="Top"><button class="btn2">戻る</button></a>
+        <a href="Confirm"><button class="btn3">登録確定</button></a>
+       </div>
+
+    </div>
+
+</body>
+
+</html>

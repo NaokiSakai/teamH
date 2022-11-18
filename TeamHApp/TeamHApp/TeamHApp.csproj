@@ -6,4 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\ReturnPersonController.cs" />
+    <Compile Remove="Views\Main\ReturnPerson.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\User\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

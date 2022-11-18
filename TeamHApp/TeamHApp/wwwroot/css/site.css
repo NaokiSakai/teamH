@@ -1,18 +1,79 @@
-html {
-  font-size: 14px;
+p {
+    font-size: small;
+    opacity: 0.6;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+h2 {
+    text-align: center;
+    font-size: auto;
+    color: white;
+    padding: 5px;
+    margin-top: 0px;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.bgc {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(253, 253, 253);
 }
 
-body {
-  margin-bottom: 60px;
+.head {
+    width: 100;
+    height: 15%;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    background-color: rgb(247, 179, 90);
+}
+
+.lostList {
+    width: auto;
+    margin: auto;
+    height: 75%;
+    /* background-color: rgb(45, 44, 42); */
+    padding-bottom: 10%;
+}
+
+.regist {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(247, 179, 90);
+}
+
+.btn1 {
+    border-radius: 15px;
+    width: 15%;
+    height: 90%;
+    margin-left: 42.5%;
+    margin-right: 42.5%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding: 4px;
+}
+
+input {
+    display: block;
+    width: 75%;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.form_title {
+    color: white;
+    background-color: #a7a19e;
+    padding: 10px 30px;
+}
+
+.form_content {
+    margin: 25px 50px;
+}
+
+.form_list {
+    margin-bottom: 2em;
 }

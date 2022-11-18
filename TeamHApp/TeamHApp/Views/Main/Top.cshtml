@@ -1,0 +1,566 @@
+﻿@model TeamHApp.Models.LostListlModel
+
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css"href="../style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function () {
+    $('.openModal').click(function() {  //openModalをクリックした時に
+        var index = $('td button.openModal').index(this);
+    //何番目のモーダルボタンかを取得
+    $('.modalArea').eq(index).addClass('is-open'); 
+    //クリックしたモーダルボタンと同じ番目のモーダルを表示する。addClassでis-openクラスを追加して表示する
+   $('html, body').css('overflow', 'hidden'); 
+    // overflow:hidden;の追加で背景のスクロール禁止に
+  });
+  
+  $('.closeModal, .modalBg').click(function() { //closeModalかmodalBgをクリックした時に
+    $('.modalArea').removeClass('is-open'); 
+    //モーダルを非表示にする。removeClassでis-openクラスを削除して非表示にする
+  $('html, body').removeAttr('style'); 
+    //追加したoverflow:hidden;を削除
+  });
+
+});
+</script>
+
+<style>
+    P{
+        font-size: 6px;
+    }
+
+    img{
+        width: 60px;
+        height: 60px;
+        text-align: center;
+    }
+    
+    body {
+     font-family: "Open Sans", sans-serif;
+     line-height: 1.25;
+    }
+
+    table {
+    border-collapse: collapse;
+    padding: 0;
+    width: 750px;
+    height: 50%;
+        box-shadow: 0 0 15px -6px #00000073;
+        margin: auto;
+    }
+    table tr {
+    background-color: #fff;
+    }
+    table tbody tr:hover{
+    background-color: #fffae9;
+    }
+    table th,
+    table td {
+    padding: .35em 1em;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    }
+    table thead th {
+        font-size: .85em;
+        padding: 1em;
+    }
+    table thead tr{
+    background-color: #FFC107;
+    color:#fff;
+    }
+    table tbody th {
+    text-align: left;
+    font-size: .8em;
+    }
+    .how{
+    text-align: center;
+    font-size: .75em;
+    }
+    .picture{
+    text-align: center;
+    }
+    .date{
+    text-align: center;
+    font-size: .75em;
+    }
+    
+    .type{
+        text-align: center;
+        font-size: .75em; 
+    }
+    .btn{
+    border-radius: 15px;
+    width: 10%;
+    height: 90%;
+    margin-left: 45%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    padding: 4px;
+    background-color:aliceblue
+    }
+
+    .area {
+        width: 750px;
+        margin: auto;
+        flex-wrap: wrap;
+        display: flex;
+        }
+        
+        .tab_class {
+        width: calc(100%/2);
+        margin-bottom: 20px;
+        height: 50px;
+        background-color: darkgrey;
+        line-height: 50px;
+        font-size: 15px;
+        text-align: center;
+        display: block;
+        float: center;
+        order: -1;
+        }
+        
+        input[name="tab_name"] {
+        display: none;
+        }
+        
+        input:checked + .tab_class {
+        background-color: rgb(250, 172, 16);
+        color: aliceblue;
+        }
+        
+        .content_class {
+        display: none;
+        width: 100%;
+        }
+        
+        input:checked + .tab_class + .content_class {
+        display: block;
+        }
+        /* ここからmodal */
+        .modal-inner {
+        position: relative;
+        }
+
+        button {
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #282828;
+        border-radius: 2px;
+        cursor: pointer;
+        }
+
+        .modalArea {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        }
+
+        .modalBg {
+        width: 100%;
+        height: 100%;
+        background: rgba(30, 30, 30, 0.9);
+        }
+
+        .modalWrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        padding: 10px 30px;
+        background: #fff;
+        }
+
+        .closeModal {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        cursor: pointer;
+        }
+
+        .is-open {
+        display: block;
+        }
+</style>
+</head>
+
+<body>
+
+    <!-- <script type="text/javascript">
+        function delate() {
+
+            let result = confirm('本当に削除しますか');
+
+            if(result){
+            alert('削除しました');
+            }else{
+            alert('削除をとりやめました');
+            }
+
+        };
+    </script> -->
+
+    <div class="bgc">
+       <div class="head">
+        <h2>落し物管理者画面</h2>
+       </div>
+
+        <div class="area">
+            <input type="radio" name="tab_name" id="tab1" checked>
+            <label class="tab_class" for="tab1">落とし物リスト</label>
+            <div class="content_class">
+                <div class="lostList">
+                    <table class="table1">
+                        <thead>
+                            <tr>
+                                <th scope="col">落し物ID</th>
+                                <th scope="col">落し物</th>
+                                <th scope="col">分類</th>
+                                <th scope="col">写真</th>
+                                <th scope="col">発見日時</th>
+                                <th scope="col">特徴</th>
+                                <th scope="col">削除</th>
+                                <th scope="col">予約者表示</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th data-label="落し物ID">1</th>
+                                <td data-label="落し物">ふでばこ</td>
+                                <td data-label="分類" class="type">筆記用具</td>
+                                <td data-label="写真" class="picture"><img src="../../assets/image/tasche-mit-schulwerkzeugen-auf-einem-weissen-hintergrund_220925-10313.webp"></td>
+                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
+                                <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                                <td>
+                                    <button class="openModal">受取予定</button>
+
+                                    <div class="modalArea">
+                                        <div class="modalBg"></div>
+                                        <div class="modalWrapper"><!-- モーダルの中身 -->
+                                            <div class="modalContents">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">ラインアカウント名</th>
+                                                            <th scope="col">予約日時</th>
+                                                            <th scope="col">ラインID</th>
+                                                            <th scope="col">返却完了ボタン</th>
+                                                            <th scope="col">取り消しボタン</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+                                                        <th data-label="ラインアカウント名">sakai naoki</th>
+                                                        <td data-label="予約日時">2022/10/10 13:00</td>
+                                                        <td data-label="ラインID" class="type">123</td>
+                                                        <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                                        <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th data-label="ラインアカウント名">sakai naoki</th>
+                                                            <td data-label="予約日時">2022/10/10 13:00</td>
+                                                            <td data-label="ラインID" class="type">123</td>
+                                                            <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                                            <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <th data-label="ラインアカウント名">sakai naoki</th>
+                                                            <td data-label="予約日時">2022/10/10 13:00</td>
+                                                            <td data-label="ラインID" class="type">123</td>
+                                                            <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                                            <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                                        </tr>
+                                                        
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    <div class="closeModal">×</div>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <th data-label="落し物ID">2</th>
+                                <td data-label="落し物">財布</td>
+                                <td data-label="分類" class="type">貴重品</td>
+                                <td data-label="写真" class="picture"><img src="../../assets/image/ダウンロード.jpg"></td>
+                                <td data-label="発見日時" class="date">11/07/1:34</td>
+                                <td data-label="特徴" class="how">革製　濃い緑　3万円</td>
+                                <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                                <td>
+                                    <button class="openModal">受取予定</button>
+                                    <div class="modalArea">
+                                    <div class="modalBg"></div>
+                                    <div class="modalWrapper"><!-- モーダルの中身 -->
+                                        <div class="modalContents">
+                                    
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ラインアカウント名</th>
+                                                <th scope="col">予約日時</th>
+                                                <th scope="col">ラインID</th>
+                                                <th scope="col">返却完了ボタン</th>
+                                                <th scope="col">取り消しボタン</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                            <th data-label="ラインアカウント名">sakai naoki</th>
+                                            <td data-label="予約日時">2022/10/10 13:00</td>
+                                            <td data-label="ラインID" class="type">123</td>
+                                            <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                            <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="closeModal">×</div>
+                                </div>
+                                </div>
+                            </td>
+        
+                        </tr>
+        
+                        <tr>
+                            <th data-label="落し物ID">3</th>
+                            <td data-label="落し物">スマートフォン</td>
+                            <td data-label="分類" class="type">電子機器</td>
+                            <td data-label="写真" class="picture"><img src="../../assets/image/smart.jpg"></td>
+                            <td data-label="発見日時" class="date">11/07/0:56</td>
+                            <td data-label="特徴" class="how">白色　プラのごっついケース　iphone12</td>
+                            <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                            <td>
+                                <button class="openModal">受取予定</button>
+                                <div class="modalArea">
+                                <div class="modalBg"></div>
+                                <div class="modalWrapper"><!-- モーダルの中身 -->
+                                    <div class="modalContents">
+                                
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ラインアカウント名</th>
+                                            <th scope="col">予約日時</th>
+                                            <th scope="col">ラインID</th>
+                                            <th scope="col">返却完了ボタン</th>
+                                            <th scope="col">取り消しボタン</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                        <th data-label="ラインアカウント名">sakai naoki</th>
+                                        <td data-label="予約日時">2022/10/10 13:00</td>
+                                        <td data-label="ラインID" class="type">123</td>
+                                        <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                        <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th data-label="ラインアカウント名">sakai naoki</th>
+                                            <td data-label="予約日時">2022/10/10 13:00</td>
+                                            <td data-label="ラインID" class="type">123</td>
+                                            <td data-label="返却完了ボタン" class="type"><button>完了</button></td>
+                                            <td data-label="取り消しボタン" class="type"><button>取消</button></td>
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                                </div>
+                                <div class="closeModal">×</div>
+                                </div>
+                                </div>
+                            </td>
+        
+                        </tr>
+        
+                    </tbody>
+                </table>   
+                
+                </div>
+            
+            </div>
+
+
+                <input type="radio" name="tab_name" id="tab2" >
+                <label class="tab_class" for="tab2">返却完了リスト</label>
+                <div class="content_class">
+                            
+                    <div class="lostList">
+                
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">ラインアカウント名</th>
+                                    <th scope="col">予約日時</th>
+                                    <th scope="col">ラインID</th>
+                                    <th scope="col">落し物ID</th>
+                                    <th scope="col">削除</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <th data-label="ラインアカウント名">sakai naoki</th>
+                                    <td data-label="予約日時">2022/10/10 13:00</td>
+                                    <td data-label="ラインID" class="type">123</td>
+                                    <td>
+                                        <a class="openModal">4</a>
+                                        <div class="modalArea">
+                                            <div class="modalBg"></div>
+                                            <div class="modalWrapper"><!-- モーダルの中身 -->
+                                                <div class="modalContents">
+                                            
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">落し物ID</th>
+                                                                <th scope="col">落し物</th>
+                                                                <th scope="col">分類</th>
+                                                                <th scope="col">写真</th>
+                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">特徴</th>
+                                                                <th scope="col">削除</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th data-label="落し物ID">1</th>
+                                                                <td data-label="落し物">ふでばこ</td>
+                                                                <td data-label="分類" class="type">筆記用具</td>
+                                                                <td data-label="写真" class="picture"><img src="../../assets/image/tasche-mit-schulwerkzeugen-auf-einem-weissen-hintergrund_220925-10313.webp"></td>
+                                                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                                                <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
+                                                                <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="closeModal">×</div>
+                                            </div>
+                                        </div>
+                                    </td>             
+                                    <td data-label="削除" class="type"><button>取消</button></td>
+                                </tr>
+                
+                                <tr>
+                                    <th data-label="ラインアカウント名">あらた</th>
+                                    <td data-label="予約日時">2022/11/22 17:00</td>
+                                    <td data-label="ラインID" class="type">234</td>
+                                    <td>
+                                        <a class="openModal">5</a>
+                                        <div class="modalArea">
+                                            <div class="modalBg"></div>
+                                            <div class="modalWrapper"><!-- モーダルの中身 -->
+                                                <div class="modalContents">
+                                            
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">落し物ID</th>
+                                                                <th scope="col">落し物</th>
+                                                                <th scope="col">分類</th>
+                                                                <th scope="col">写真</th>
+                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">特徴</th>
+                                                                <th scope="col">削除</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th data-label="落し物ID">1</th>
+                                                                <td data-label="落し物">ふでばこ</td>
+                                                                <td data-label="分類" class="type">筆記用具</td>
+                                                                <td data-label="写真" class="picture"><img src="../../assets/image/tasche-mit-schulwerkzeugen-auf-einem-weissen-hintergrund_220925-10313.webp"></td>
+                                                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                                                <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
+                                                                <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="closeModal">×</div>
+                                            </div>
+                                        </div>
+                                    </td>     
+                                    <td data-label="削除" class="type"><button>取消</button></td>
+                                </tr>
+                
+                                <tr>
+                                    <th data-label="ラインアカウント名">ayasa</th>
+                                    <td data-label="予約日時">2022/11/23 18:00</td>
+                                    <td data-label="ラインID" class="type">54</td>
+                                    <td>
+                                        <a class="openModal">6</a>
+                                        <div class="modalArea">
+                                            <div class="modalBg"></div>
+                                            <div class="modalWrapper"><!-- モーダルの中身 -->
+                                                <div class="modalContents">
+                                            
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">落し物ID</th>
+                                                                <th scope="col">落し物</th>
+                                                                <th scope="col">分類</th>
+                                                                <th scope="col">写真</th>
+                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">特徴</th>
+                                                                <th scope="col">削除</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th data-label="落し物ID">1</th>
+                                                                <td data-label="落し物">ふでばこ</td>
+                                                                <td data-label="分類" class="type">筆記用具</td>
+                                                                <td data-label="写真" class="picture"><img src="../../assets/image/tasche-mit-schulwerkzeugen-auf-einem-weissen-hintergrund_220925-10313.webp"></td>
+                                                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                                                <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
+                                                                <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="closeModal">×</div>
+                                            </div>
+                                        </div>
+                                    </td>     
+                                    <td data-label="削除" class="type"><button >取消</button></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p style="float: right">落し物IDをクリックすると返却した落し物の詳細が見れます。</p>  
+
+                    </div>        
+                </div>
+        </div>
+
+        <div class="regist">
+            <a href="Main/LostRegist"><button class="btn">落し物登録</button></a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

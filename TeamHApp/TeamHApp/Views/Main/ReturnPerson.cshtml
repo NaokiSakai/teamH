@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <style>
+
+        .form_textarea {
+            font-size: 1rem;
+            color: #495057;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 5px;
+            margin-right: 59.7%;
+            float: right;
+            width: 40%;
+            margin-bottom: 5%;
+        }
+
+        .datetime {
+            width: 45%;
+        }
+
+        .btn2 {
+            border-radius: 15px;
+            width: 10%;
+            height: 90%;
+            margin-left: 39%;
+            margin-top: 0.5%;
+            margin-bottom: 0.5%;
+            padding: 4px;
+        }
+
+        .btn3 {
+            border-radius: 15px;
+            width: 10%;
+            height: 90%;
+            margin-right: 39%;
+            margin-top: 0.5%;
+            margin-bottom: 0.5%;
+            padding: 4px;
+        }
+
+        select {
+            width: 30%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgc">
+        <div class="head">
+            <h2>落し物管理者画面</h2>
+        </div>
+
+        <div class="lostList">
+            <div class="form">
+                <div class="form_title">受取人登録フォーム</div>
+                <div class="form_content">
+                    <form>
+                        <div class="form_list">
+                            <label>落し物を受け取った人名を入力してください</label>
+                            <input name="returnName" type="text">
+
+                            <label>受取人の電話番号</label>
+                            <input name="phoneNumber" type="tel">
+
+                            <label>返却時刻を入力してください</label>
+                            <input name="returnTime" type="datetime-local" class="datetime">
+
+                            <label>落し物IDを入力してください</label>
+                            <input name="lostId" type="text">
+
+                            <br>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="regist">
+            <a href="Top"><button class="btn2">戻る</button></a>
+            <a href="ConfirmPage"><button class="btn3">登録確定</button></a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
