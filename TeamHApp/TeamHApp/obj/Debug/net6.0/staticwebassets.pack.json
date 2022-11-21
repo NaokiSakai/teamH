@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\popee\\Documents\\GitHub\\TeamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\icon.jpg",
+      "PackagePath": "staticwebassets\\image\\icon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\popee\\Documents\\GitHub\\TeamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\smart.jpg",
+      "PackagePath": "staticwebassets\\image\\smart.jpg"
+    },
+    {
+      "Id": "C:\\Users\\popee\\Documents\\GitHub\\TeamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\ダウンロード.jpg",
+      "PackagePath": "staticwebassets\\image\\ダウンロード.jpg"
+    },
+    {
+      "Id": "C:\\Users\\popee\\Documents\\GitHub\\TeamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\筆箱.jpg",
+      "PackagePath": "staticwebassets\\image\\筆箱.jpg"
+    },
+    {
       "Id": "C:\\Users\\popee\\Documents\\GitHub\\TeamH\\TeamHApp\\TeamHApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
