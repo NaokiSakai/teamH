@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TeamHApp.Models;
+using System.Web;
+using System.Diagnostics;
 
 namespace TeamHApp.Controllers
 {
@@ -8,16 +10,17 @@ namespace TeamHApp.Controllers
     {
         public ActionResult Top()
         {
-            LostModel m1 = new LostModel();
-            m1.id = 1;
-            m1.name = "ふでばこ";
+            DBconnect.Test();
+            itemsModel m1 = new itemsModel();
+            m1.items_id = 1;
+            m1.type = "ふでばこ";
             m1.lost_subscriber.Add( "佐藤");
             m1.lost_subscriber.Add("酒井");
 
 
-            LostModel m2 = new LostModel();
-            m2.id = 2;
-            m2.name = "傘";
+            itemsModel m2 = new itemsModel();
+            m2.items_id = 2;
+            m2.type = "傘";
             m2.lost_subscriber.Add("小林");
             m2.lost_subscriber.Add("吉田");
             m2.lost_subscriber.Add("新");
@@ -34,11 +37,23 @@ namespace TeamHApp.Controllers
             return View();
         }
 
-        public ActionResult LostRegist ()
+        [HttpGet]
+        public ActionResult LostRegist()
         {
             return View();
         }
-        public ActionResult Confirm()
+
+      
+
+
+        [HttpPost]
+        public ActionResult ConfirmPage(string lostType, string picture, string foundPlace, string feature)
+        {
+            DBconnect.InsertItem( lostType, "imagepath_test" ,foundPlace, feature, "False");
+
+            return View();
+        }
+        public ActionResult ConfirmPage()
         {
             return View();
         }
@@ -117,6 +132,7 @@ namespace TeamHApp.Controllers
             {
                 return View();
             }
+        
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class LostListlModel
     {
-        public List<LostModel> lost_list = new List<LostModel>();
-    }
-}
+        public List<itemsModel> lost_list = new List<itemsModel>();
+       
+} }
