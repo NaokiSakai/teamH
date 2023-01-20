@@ -123,7 +123,9 @@ namespace TeamHApp.Models
                                 m.classify = (string)reader["classify"];
                                 m.image_path = (string)reader["image_path"];
                                 m.information = (string)reader["information"];
-                                m.is_sended_notice = (bool)reader["is_sended_notice"];
+                                string str_nortice = (string)reader["is_sended_notice"];
+
+                                m.is_sended_notice = str_nortice; 
                                
                                 
 
@@ -215,6 +217,95 @@ namespace TeamHApp.Models
             }
         }
 
+        public static List<LostReservationModel> GetReserve(int item_id)
+        {
+            List<LostReservationModel> result = new List<LostReservationModel>();
+            try
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+                // DBサーバー名
+                builder.DataSource = "schoolnetdb.database.windows.net";
+                // ユーザー名
+                builder.UserID = "schoolnetadmin";
+                // パスワード
+                builder.Password = "schoolnetpass000!";
+                // DB名
+                builder.InitialCatalog = "SchoolNETDataBase";
+
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    Console.WriteLine("\nQuery data example:");
+                    Console.WriteLine("=========================================\n");
+
+
+                    // SQL文の発行
+                    string sql_select_reserve = "SELECT * FROM dbo.reserv WHERE items_Id = " + item_id + ";";
+                    string sql_select_user = "SELECT * FROM dbo.UserTable";
+
+                    SqlDataReader user_reader;
+                    List<UserModel> userlist = new List<UserModel>();
+                   
+                    using (SqlCommand command = new SqlCommand(sql_select_user, connection))
+                    {
+                        connection.Open();
+                        user_reader = command.ExecuteReader();
+                        while (user_reader.Read())
+                        {
+                            UserModel m = new UserModel();
+                            m.userId =(int)user_reader["user_Id"];
+                            m.name = (string)user_reader["name"];
+                            userlist.Add(m);
+                        }
+                    }
+                    user_reader.Close();
+
+
+                    using (SqlCommand command = new SqlCommand(sql_select_reserve, connection))
+                    {
+                        string s = "";
+
+                        
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        // SELECT文の場合は結果を表示する
+
+                        
+                        while (reader.Read())
+                        {
+                            
+                            LostReservationModel m = new LostReservationModel();
+                            m.LostId = (int)reader["items_Id"];
+                            int userid = (int)reader["user_number"];
+                            m.name = userlist[userid - 1].name;
+                           
+
+
+
+
+                            result.Add(m);
+
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+
+                Console.WriteLine("");
+                Console.WriteLine("---------------End---------------");
+            }
+
+
+
+            return result;
+        }
 
     }
 

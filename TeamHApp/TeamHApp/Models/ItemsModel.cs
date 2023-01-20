@@ -13,10 +13,10 @@ namespace TeamHApp.Models
         public string  image_path { get; set; }
         public string found_date { get; set; }
         public string information { get; set; }
-        public  Boolean is_sended_notice { get; set; }
+        public  string is_sended_notice { get; set; }
 
-        public List<string> lost_subscriber = new List<string>();
-     
+        public List<LostReservationModel> lost_reservation = new List<LostReservationModel>();
+
 
 
     }

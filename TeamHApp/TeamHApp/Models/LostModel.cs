@@ -9,7 +9,7 @@
         public string LostDate { get; set; }
         public string LostInfomation { get; set; }
 
-        public List<LostReservationModel> lost_reservation = new List<LostReservationModel>();
+     
 
 
     }

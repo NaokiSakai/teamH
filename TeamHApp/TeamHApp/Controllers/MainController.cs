@@ -10,22 +10,17 @@ namespace TeamHApp.Controllers
     {
         public ActionResult Top()
         {
-<<<<<<< HEAD
-            DBconnect.Test();
             itemsModel m1 = new itemsModel();
             m1.items_id = 1;
             m1.type = "ふでばこ";
-            m1.lost_subscriber.Add( "佐藤");
-            m1.lost_subscriber.Add("酒井");
+
 
 
             itemsModel m2 = new itemsModel();
             m2.items_id = 2;
             m2.type = "傘";
-            m2.lost_subscriber.Add("小林");
-            m2.lost_subscriber.Add("吉田");
-            m2.lost_subscriber.Add("新");
-=======
+            
+            /*
             LostModel m1 = new LostModel();
             m1.LostId = 1;
             m1.LostName = "ふでばこ";
@@ -58,12 +53,14 @@ namespace TeamHApp.Controllers
                 lrm.reservation_date = "2022-11-30 12:30:20";
                 lrm.line_id = "222";
                 m2.lost_reservation.Add(lrm);
-            }
->>>>>>> a43d2da94c104f0cb71735ca60062d5d67a36398
-
+            */
             LostListlModel ls = new LostListlModel();
-            ls.lost_list.Add(m1);
-            ls.lost_list.Add(m2);
+            ls.lost_list = DBconnect.GetItems();
+
+            for(int i = 0; i < ls.lost_list.Count; i++)
+            {
+                ls.lost_list[i].lost_reservation = DBconnect.GetReserve(ls.lost_list[i].items_id);
+            }
 
             return View(ls);
         }
