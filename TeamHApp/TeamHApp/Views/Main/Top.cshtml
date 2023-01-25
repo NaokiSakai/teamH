@@ -86,8 +86,8 @@
             padding: 1em;
         }
         table thead tr{
-        background-color: #FFC107;
-        color:#fff;
+                background-color: #AAAAAA;
+                color: #333333;
         }
         table tbody th {
         text-align: left;
@@ -144,7 +144,7 @@
         }
         
         input:checked + .tab_class {
-        background-color: rgb(250, 172, 16);
+        background-color: #333333(250, 172, 16);
         color: aliceblue;
         }
         
@@ -224,7 +224,7 @@
         font-weight: bold;      /* 太文字にする */
         line-height: 20px;      /* 行の高さを指定 */
         text-align: center;     /* 文字を中央揃えにする */
-        background: #E68031;    /* 背景色をオレンジに指定 */
+        background: #333333; /* 背景色をオレンジに指定 */
         border-radius: 10px;    /* line-heightの半分の角丸を指定 */
         min-width: 20px;        /* 最低幅を指定 */
         padding: 0 3px;         /* 左右に少しだけ余白を設定 */
@@ -263,10 +263,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">落し物ID</th>
-                                <th scope="col">落し物</th>
                                 <th scope="col">分類</th>
                                 <th scope="col">写真</th>
-                                <th scope="col">発見日時</th>
+                                <th scope="col">発見場所</th>
                                 <th scope="col">特徴</th>
                                 <th scope="col">削除</th>
                                 <th scope="col">予約者表示</th>
@@ -279,9 +278,9 @@
                                     {
                                     <tr>
                                         <th data-label="落し物ID">@Model.lost_list[i].items_id</th>
-                                        <td data-label="落し物">@Model.lost_list[i].classify</td>
-                                        <td data-label="写真" class="picture"><img src="../image/smart.jpg"></td>
-                                        <td data-label="発見日時" class="date">@Model.lost_list[i].found_date</td>
+                                        <td data-label="分類">@Model.lost_list[i].classify</td>
+                                        <td data-label="写真" class="picture"><img src ="/image/@Model.lost_list[i].image_path"></td>
+                                                <td data-label="発見場所" class="date">@Model.lost_list[i].found_place</td>
                                         <td data-label="特徴" class="how">@Model.lost_list[i].information</td>
                                         <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
                                         <td>
@@ -376,10 +375,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">落し物ID</th>
-                                                                <th scope="col">落し物</th>
                                                                 <th scope="col">分類</th>
                                                                 <th scope="col">写真</th>
-                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">発見場所</th>
                                                                 <th scope="col">特徴</th>
                                                                 <th scope="col">削除</th>
                                                             </tr>
@@ -419,10 +417,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">落し物ID</th>
-                                                                <th scope="col">落し物</th>
                                                                 <th scope="col">分類</th>
                                                                 <th scope="col">写真</th>
-                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">発見場所</th>
                                                                 <th scope="col">特徴</th>
                                                                 <th scope="col">削除</th>
                                                             </tr>
@@ -430,10 +427,9 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th data-label="落し物ID">1</th>
-                                                                <td data-label="落し物">ふでばこ</td>
                                                                 <td data-label="分類" class="type">筆記用具</td>
                                                             <td data-label="写真" class="picture"><img src="../image/筆箱.jpg"></td>
-                                                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                                                <td data-label="発見場所" class="date">音楽室</td>
                                                                 <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
                                                                 <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
                                                             </tr>
@@ -462,10 +458,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">落し物ID</th>
-                                                                <th scope="col">落し物</th>
                                                                 <th scope="col">分類</th>
                                                                 <th scope="col">写真</th>
-                                                                <th scope="col">発見日時</th>
+                                                                <th scope="col">発見場所</th>
                                                                 <th scope="col">特徴</th>
                                                                 <th scope="col">削除</th>
                                                             </tr>
@@ -473,10 +468,9 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th data-label="落し物ID">1</th>
-                                                                <td data-label="落し物">ふでばこ</td>
                                                                 <td data-label="分類" class="type">筆記用具</td>
-                                                            <td data-label="写真" class="picture"><img src="../image/筆箱.jpg"></td>
-                                                                <td data-label="発見日時" class="date">11/07/0:56</td>
+                                                          　　　  <td data-label="写真" class="picture"><img src="../image/筆箱.jpg"></td>
+                                                                <td data-label="発見場所" class="date">音楽室</td>
                                                                 <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
                                                                 <td data-label="削除" class="delate"><button onclick=delate()>削除</button></td>
                                                             </tr>

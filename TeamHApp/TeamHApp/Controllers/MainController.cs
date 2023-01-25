@@ -3,11 +3,24 @@ using Microsoft.AspNetCore.Mvc;
 using TeamHApp.Models;
 using System.Web;
 using System.Diagnostics;
+using Azure.Storage.Blobs;
 
 namespace TeamHApp.Controllers
 {
     public class MainController : Controller
+
+
     {
+
+        IConfiguration Configuration { get; }
+
+        public MainController(IConfiguration configuration)
+        {
+            // テスト処理　あとで消す
+            DBconnect.GetImgFilename();
+            Configuration = configuration;
+        }
+
         public ActionResult Top()
         {
             itemsModel m1 = new itemsModel();
@@ -75,28 +88,110 @@ namespace TeamHApp.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> LostRegist([FromForm] UploadModel upload)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(upload);
+            }
 
-      
+            // 設定ファイルからストレージアカウントの接続文字列を取得
+            var connectionString = Configuration.GetConnectionString("AzureStorage");
+
+            // Blob Storageのコンテナ名（確実に一意にするためにGUIDを連結）
+            var containerName = $"sample{Guid.NewGuid()}";
+
+            try
+            {
+                // BlobServiceClientクラスのインスタンスを作成
+                var blobServiceClient = new BlobServiceClient(connectionString);
+
+                // コンテナを作成する
+                BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+
+                // BlobClientクラスのインスタンスを取得
+                var blobClient = containerClient.GetBlobClient(upload.File.FileName);
+
+                // ファイルをBLOBにアップロードする
+                await blobClient.UploadAsync(upload.File.OpenReadStream());
+
+                ViewData["Result"] = "ファイルをアップロードしました！";
+            }
+            catch
+            {
+                ViewData["Result"] = "ファイルのアップロードに失敗しました。";
+            }
+
+            return View();
+        }
+
+
 
 
         [HttpPost]
-        public ActionResult ConfirmPage(string lostType, string picture, string foundPlace, string feature)
+        public ActionResult ConfirmPage(string lostType, IFormFile picture,string foundPlace, string feature)
         {
-            DBconnect.InsertItem( lostType, "imagepath_test" ,foundPlace, feature, "False");
+            // アップロードファイル名の取得
+            string up_filename = picture.FileName;
+            string up_file_ext = Path.GetExtension(up_filename);
+            // 拡張子のチェック
+            string[] accept_ext = new string[] { "jpg", "png" }; // 許可する拡張子のリスト
+            bool is_accept_ext = false;                         // 許可する拡張子かどうかのフラグ
+            foreach (string extensions in accept_ext)
+            {
+                // 許可された拡張子であればフラグをtrue
+                if (extensions == up_file_ext)
+                {
+                    is_accept_ext = true;
+                }
+            }
+
+            // 許可されてない拡張子の場合の処理
+            if (is_accept_ext)
+            {
+                ViewData["up_file_name"] = null;
+                return View("Index", "Home");
+            }
+
+            // アップロードファイルの保存、事前に/wwwroot/img/productフォルダを作成しておく。
+            // なおproductフォルダに何か入ってないとプロジェクトで認識されないので、
+            // 適当なテキストファイル「none.txt」など入れて置く。
+
+            // 保存するファイルの名前の生成、ファイル名の数字をDBの主キーにするなど被らないようにしてください。
+            Random r = new Random();
+            string save_filename = r.Next(1000) + up_file_ext; // 保存するファイル名
+
+            using (var stream = System.IO.File.Create("./wwwroot/image/" + save_filename))
+            {
+                ViewData["up_file_name"] = save_filename;
+                // 保存
+                picture.CopyTo(stream);
+            }
+
+
+            DBconnect.InsertItem( lostType, save_filename, foundPlace, feature, "False");
+            ViewData["lost_type"] = lostType;
+        　　ViewData["foundPlace"] = foundPlace;
+            ViewData["feature"] = feature;
 
             return View();
         }
+
+
         public ActionResult ConfirmPage()
+
         {
+           itemsModel m = new itemsModel();
+           //m.classify= DBconnect.GetItems();
+           
+
+
             return View();
         }
-
-
+        
         // GET: MainController
-        public ActionResult Index()
-        {
-            return View();
-        }
+     
 
         // GET: MainController/Details/5
         public ActionResult Details(int id)

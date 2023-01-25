@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="../style.css">
     <style>
 
@@ -55,58 +55,87 @@
 </head>
 
 <body>
-    <form method="POST" action="ConfirmPage">
-        <div class="bgc">
-            <div class="head">
-                <h2>落し物管理者画面</h2>
-            </div>
+    <div class="bgc">
+        <div class="head">
+            <h2>落し物管理者画面</h2>
+        </div>
 
-            <div class="lostList">
-                <div class="form">
-                    <div class="form_title">落し物登録フォーム</div>
-                    <div class="form_content">
-
+        <div class="lostList">
+            <div class="form">
+                <div class="form_title">落し物登録フォーム</div>
+                <div class="form_content">
+                    <form enctype="multipart/form-data" method="post" asp-controller="Main" asp-action="ConfirmPage">
                         <div class="form_list">
 
 
                             <label>落し物分類</label><br>
                             <select name="lostType">
-                                <option value="write">筆記用具</option>
-                                <option value="elect">電子機器</option>
-                                <option value="value">貴重品</option>
-                                <option value="accessory">小物・アクセサリー</option>
-                                <option value="clothing">衣類</option>
-                                <option value="books">書籍類</option>
-                                <option value="other">その他</option>
+                                <option value="筆記用具">筆記用具</option>
+                                <option value="電子機器">電子機器</option>
+                                <option value="貴重品">貴重品</option>
+                                <option value="小物・アクセサリー">小物・アクセサリー</option>
+                                <option value="衣類">衣類</option>
+                                <option value="書籍類">書籍類</option>
+                                <option value="その他">その他</option>
                             </select><br>
+                            @model TeamHApp.Models.UploadModel
+                            @{
+                                ViewData["Title"] = "ファイルアップロード";
+                            }
 
 
                             <label>写真をアップロ分類ードしてください</label>
-                            
-                            <input name="picture" type="file" accept="image/png, image/jpeg">
+                            @if (ViewData["Result"] != null)
+                            {
+                                @ViewData["Result"]
+                                ;
+                            }
+
+
+
+
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="mb-3">
+                                <input name="picture" type="file" />
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="登録確定" />
+                            </div>
+
+
 
                             <label>発見場所</label>
                             <input name="foundPlace" type="text">
 
                             <label>特徴を入力してください</label>
-                          
-                          
+
+
                             <textarea name="feature" class="form_textarea"></textarea>
-                                                     
-                            <br>
-                        </div>
+                    </form>
 
-                    </div>
+                    <br>
                 </div>
-            </div>
 
-            <div class="regist">
-                <a href="Top"><button class="btn2">戻る</button></a>
-                <input type="submit" value="登録確定" />
             </div>
-
         </div>
-    </form>
+    </div>
+
+    <div class="regist">
+        <a href="Top"><button class="btn2">戻る</button></a>
+
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+    <div>
+    </div>
+
 </body>
 
 </html>

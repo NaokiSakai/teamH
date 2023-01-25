@@ -1,0 +1,26 @@
+﻿@page
+@model TeamHApp.Views.Main.IndexModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        
+        <form enctype="multipart/form-data" method="post" asp-controller="Main" asp-action="LostResist">
+          @using (Html.BeginForm("LostRegist", "Main", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="uploadFile" />
+            <input type="submit" value="アップロード" />
+        }
+        </form>
+    </div>
+</body>
+</html>

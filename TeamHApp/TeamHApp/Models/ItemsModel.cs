@@ -12,6 +12,8 @@ namespace TeamHApp.Models
 
         public string  image_path { get; set; }
         public string found_date { get; set; }
+
+        public string found_place { get; set; }
         public string information { get; set; }
         public  string is_sended_notice { get; set; }
 
