@@ -9,13 +9,9 @@
 
   <ItemGroup>
     <Compile Remove="Views\新しいフォルダー1\**" />
-    <Compile Remove="Views\新しいフォルダー\**" />
     <Content Remove="Views\新しいフォルダー1\**" />
-    <Content Remove="Views\新しいフォルダー\**" />
     <EmbeddedResource Remove="Views\新しいフォルダー1\**" />
-    <EmbeddedResource Remove="Views\新しいフォルダー\**" />
     <None Remove="Views\新しいフォルダー1\**" />
-    <None Remove="Views\新しいフォルダー\**" />
   </ItemGroup>
 
   <ItemGroup>

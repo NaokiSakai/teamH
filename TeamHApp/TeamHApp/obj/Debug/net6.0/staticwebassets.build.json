@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CaARyEk43gJ8tsaM2MER3uMqS10723DI0qqSVkaca4Y=",
+  "Hash": "Ek+xznWXAwaOwI8dapTT5wDGAwjjK3zq0JLLaB2jbY4=",
   "Source": "TeamHApp",
   "BasePath": "_content/TeamHApp",
   "Mode": "Default",
@@ -272,6 +272,23 @@
       "OriginalItemSpec": "wwwroot\\image\\534.png"
     },
     {
+      "Identity": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\543.png",
+      "SourceId": "TeamHApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\",
+      "BasePath": "_content/TeamHApp",
+      "RelativePath": "image/543.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\543.png"
+    },
+    {
       "Identity": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\561.png",
       "SourceId": "TeamHApp",
       "SourceType": "Discovered",
@@ -304,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\image\\647.png"
+    },
+    {
+      "Identity": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\755.png",
+      "SourceId": "TeamHApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\",
+      "BasePath": "_content/TeamHApp",
+      "RelativePath": "image/755.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\755.png"
     },
     {
       "Identity": "C:\\Users\\ayasa\\Documents\\GitHub\\teamH\\TeamHApp\\TeamHApp\\wwwroot\\image\\767.png",

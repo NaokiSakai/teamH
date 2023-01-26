@@ -404,7 +404,7 @@ namespace TeamHApp.Models
                      using (SqlCommand command = new SqlCommand(sql_select, connection))
                      {
                          string s = "";
-
+        
                          connection.Open();
                          SqlDataReader reader = command.ExecuteReader();
 

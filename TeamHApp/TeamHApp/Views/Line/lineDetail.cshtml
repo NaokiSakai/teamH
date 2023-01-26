@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        br {
+            display: block;
+            content: "";
+            margin: 3px 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .bdc {
+            width: 100vh;
+            height: 100vh;
+            margin: 0px;
+            padding: 0px;
+            background-color: rgb(79, 80, 82);
+        }
+
+        .area {
+            width: 100vw;
+            height: 86vh;
+            padding-top: 50px;
+            margin: 0px;
+            padding: 0px;
+            background-color: rgb(235, 236, 236);
+            overflow: auto;
+        }
+
+        .head {
+            width: 100vw;
+            height: 7vh;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            background-color: rgb(247, 179, 90);
+        }
+
+        .regist {
+            width: 100%;
+            height: 7vh;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            background-color: rgb(255, 223, 182);
+        }
+
+        .btn {
+            border-radius: 23px;
+            background-color: rgb(247, 179, 90);
+            color: white;
+            font-size: large;
+            width: 35%;
+            height: 80%;
+            margin-left: 32.5%;
+            margin-top: 1.5%;
+            margin-bottom: 0.5%;
+            padding: 4px;
+        }
+
+        img {
+            width: 50%;
+            height: 70%;
+            max-width: 600px;
+            max-height: 550px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            padding: 15px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+        .lostList {
+            width: 90%;
+            height: 90%;
+            padding-left: 5%;
+            padding-right: 5%;
+            padding-top: 5%;
+        }
+
+        .lostList2 {
+            width: 80%;
+            height: 25%;
+            margin: auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            border: rgb(150, 149, 149) solid 5px;
+            border-radius: 5%;
+            background-color: white;
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        hr {
+            border-top: 15px dotted rgb(247, 179, 90);
+            width: 90%;
+            margin-left: 5%;
+            position: absolute;
+            bottom: 25%;
+        }
+
+        .detail {
+            width: 90%;
+            height: 80%;
+            margin: auto;
+        }
+
+        .btnPosition {
+            position: absolute;
+            bottom: 1%;
+            width: 75%;
+            height: 25%;
+            margin-left: 12.5%;
+        }
+
+        .info {
+            width: 30vw;
+            height: 15vh;
+            float: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            padding: 0;
+            width: 750px;
+            height: 70%;
+            box-shadow: 0 0 15px -6px #00000073;
+            margin: auto;
+        }
+
+            table tr {
+                background-color: #fff;
+            }
+            /* table tbody tr:hover{
+                        background-color: #fffae9;
+                        } */
+
+            table td {
+                padding: .35em 1em;
+                border-bottom: 1px solid #eee;
+                text-align: center;
+                font-size: x-large;
+            }
+
+            table th {
+                background-color: #FFC107;
+                color: #fff;
+                font-size: x-large;
+                padding: 1em;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="bgc">
+        <div class="head">
+            <h2>落し物管理者画面</h2>
+        </div>
+
+        <div class="area">
+            <div class="lostList">
+                <table class="table1">
+
+                    <tr>
+                        <th scope="col">落し物ID</th>
+                        <td data-label="落し物ID">1</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">落し物</th>
+                        <td data-label="落し物">ふでばこ</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">分類</th>
+                        <td data-label="分類" class="type">筆記用具</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">写真</th>
+                        <td data-label="写真" class="picture"><img src="../../assets/image/tasche-mit-schulwerkzeugen-auf-einem-weissen-hintergrund_220925-10313.webp"></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">発見日時</th>
+                        <td data-label="発見日時" class="date">11/07/0:56</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">特徴</th>
+                        <td data-label="特徴" class="how">シャカシャカ　中にハサミ　さかいなおきの名前あり</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">受取予約</th>
+                        <td data-label="受取予定" class=""><a href="./pickUp"><button class="btn" style="margin-left:0%;">受取予約</button></a></td>
+                    </tr>
+
+
+                </table>
+                <p><a href="./lineList">戻る</a></p>
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="regist">
+        </div>
+
+    </div>
+
+</body>
+
+</html>
